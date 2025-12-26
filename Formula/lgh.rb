@@ -25,41 +25,41 @@ class Lgh < Formula
   desc "Lightweight local Git hosting service with authentication - LocalGitHub"
   homepage "https://github.com/JoeGlenn1213/lgh"
   license "MIT"
-  version "1.0.2"
+  version "1.0.3"
 
   # Use prebuilt binaries for faster installation
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.0.2/lgh-1.0.2-darwin-arm64"
-      sha256 "9e0467add1cb6b9fcd64da46dc6b4dc76cc749961faf0c05caad89901369bd89"
+      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.0.3/lgh-1.0.3-darwin-arm64"
+      sha256 "7f890fefb343f503691147b7fef1e8e32a5a113572057c4d2f6c05188bffae7e"
 
       def install
-        bin.install "lgh-1.0.2-darwin-arm64" => "lgh"
+        bin.install "lgh-1.0.3-darwin-arm64" => "lgh"
       end
     else
-      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.0.2/lgh-1.0.2-darwin-amd64"
-      sha256 "0addf28643f6e87923f044974deb820aa670697c82ad0f4a50a7c03ca1e69b1d"
+      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.0.3/lgh-1.0.3-darwin-amd64"
+      sha256 "9d73f80f887de114ecd73b36cccfeef409e98ce7a38b7023edac37eccee26265"
 
       def install
-        bin.install "lgh-1.0.2-darwin-amd64" => "lgh"
+        bin.install "lgh-1.0.3-darwin-amd64" => "lgh"
       end
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.0.2/lgh-1.0.2-linux-arm64"
-      sha256 "1e3d2ee1a21672d18d1f9e26067f32a6c778be96782a3933387dec30ea3d5573"
+      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.0.3/lgh-1.0.3-linux-arm64"
+      sha256 "7a0386e83ab35d7a7dfe50c2a7e12cdfb65f260f839fc56d4f5310945d035961"
 
       def install
-        bin.install "lgh-1.0.2-linux-arm64" => "lgh"
+        bin.install "lgh-1.0.3-linux-arm64" => "lgh"
       end
     else
-      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.0.2/lgh-1.0.2-linux-amd64"
-      sha256 "a267e7e88dfd9a7de19b199198a71fe9b46cda2a3fa03c5fd6644dcbec296217"
+      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.0.3/lgh-1.0.3-linux-amd64"
+      sha256 "5f56d86b31a91c381612c42da5027176e9e7b3f2a9c59cbab0e2dd90a6afb628"
 
       def install
-        bin.install "lgh-1.0.2-linux-amd64" => "lgh"
+        bin.install "lgh-1.0.3-linux-amd64" => "lgh"
       end
     end
   end
@@ -78,10 +78,10 @@ class Lgh < Formula
         3. In your project, run 'lgh add .' to register it
         4. Push with 'git push lgh main'
 
-      New in v1.0.2:
-        - Run 'lgh serve -d' for daemon mode (background)
-        - Run 'lgh stop' to stop the server
-        - Run 'lgh -v' to check version
+      New in v1.0.3:
+        - 'lgh add .' now auto-initializes non-Git directories
+        - 'lgh status' now lists repository names
+        - Run 'lgh remove <name>' to remove a repo
 
       For network sharing (with authentication):
         1. Run 'lgh auth setup' to configure username/password
