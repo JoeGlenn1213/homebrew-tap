@@ -31,14 +31,14 @@ class Lgh < Formula
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.0.7/lgh-1.0.7-darwin-arm64"
-      sha256 "e9e35f63525725e62cf50c92589edfff0cd1efaefb8ad12220142d815bd1320c"
+      sha256 "90ca85c2641f8b51feaeeb73f1e9eec21c976589247edb587f53dd70ff116df0"
 
       def install
         bin.install "lgh-1.0.7-darwin-arm64" => "lgh"
       end
     else
       url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.0.7/lgh-1.0.7-darwin-amd64"
-      sha256 "5972caa3b8148fc5147b0996853efd2de16c86721b55a44a62ebc6d66bfdf9d6"
+      sha256 "49bdf0da12b24ef8e01f2acaf0203cb2441447f7a1664e9c0cd2baac6575d6c7"
 
       def install
         bin.install "lgh-1.0.7-darwin-amd64" => "lgh"
@@ -49,14 +49,14 @@ class Lgh < Formula
   on_linux do
     if Hardware::CPU.arm?
       url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.0.7/lgh-1.0.7-linux-arm64"
-      sha256 "0839454a6fb824d2b7f757aed484b6d95581a5a980cb1e00aa5ac89de238f82b"
+      sha256 "6fb05025d76cd5fdfbef94e7fe7679bfb4771b9225b9178143c404a1f46d2a79"
 
       def install
         bin.install "lgh-1.0.7-linux-arm64" => "lgh"
       end
     else
       url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.0.7/lgh-1.0.7-linux-amd64"
-      sha256 "5a30c384ecc8a3211e72206333d6d317f964a00c16fe17e2212ed48d79f2373b"
+      sha256 "970084e015d8a6464962192be1839dabef97f29fe32c0b2e507dda8b233791a4"
 
       def install
         bin.install "lgh-1.0.7-linux-amd64" => "lgh"
