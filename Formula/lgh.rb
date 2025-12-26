@@ -73,10 +73,10 @@ class Lgh < Formula
       LGH (LocalGitHub) - Lightweight local Git hosting service
 
       To get started:
-        1. Run 'lgh init' to set up the environment
-        2. Run 'lgh serve' to start the HTTP server
-        3. In your project, run 'lgh add .' to register it
-        4. Push with 'git push lgh main'
+      To get started:
+        1. Run 'lgh serve' to start the server
+        2. In your project: 'lgh add . --push' (One-click setup!)
+          - Or manually: 'lgh add .' then 'git push lgh HEAD'
 
       New in v1.0.4:
         - 'lgh repo status': Check connection state clearly
