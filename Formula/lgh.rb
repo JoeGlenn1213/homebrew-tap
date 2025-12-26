@@ -25,41 +25,41 @@ class Lgh < Formula
   desc "Lightweight local Git hosting service with authentication - LocalGitHub"
   homepage "https://github.com/JoeGlenn1213/lgh"
   license "MIT"
-  version "1.0.8"
+  version "1.0.9"
 
   # Use prebuilt binaries for faster installation
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.0.8/lgh-1.0.8-darwin-arm64"
-      sha256 "ad7d436910550aa771203da6b6976b8554fc2c1fc2c685ac766fbeea1fe0f8b3"
+      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.0.9/lgh-1.0.9-darwin-arm64"
+      sha256 "a1c5b2560fc8c139c7a998adc44bcab76528bf4f140a589362f7284c6c986509"
 
       def install
-        bin.install "lgh-1.0.8-darwin-arm64" => "lgh"
+        bin.install "lgh-1.0.9-darwin-arm64" => "lgh"
       end
     else
-      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.0.8/lgh-1.0.8-darwin-amd64"
-      sha256 "f252c49cf10a518b5bf1318b2332d6afee2293cf3999c9f0c950b0d22ff072a8"
+      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.0.9/lgh-1.0.9-darwin-amd64"
+      sha256 "c47ef6b8fec201e6da24cf2a4276cad6064740bf87eaf02461a1466019f48170"
 
       def install
-        bin.install "lgh-1.0.8-darwin-amd64" => "lgh"
+        bin.install "lgh-1.0.9-darwin-amd64" => "lgh"
       end
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.0.8/lgh-1.0.8-linux-arm64"
-      sha256 "5d9c3c345bdd74d5f91f536f1360aedc5a82ed601e739ee56f1db5bdbaec31db"
+      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.0.9/lgh-1.0.9-linux-arm64"
+      sha256 "ac64a5568f69bf26bd143169065b8b9ba4322342185ac5c6ceb300bf419c93e8"
 
       def install
-        bin.install "lgh-1.0.8-linux-arm64" => "lgh"
+        bin.install "lgh-1.0.9-linux-arm64" => "lgh"
       end
     else
-      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.0.8/lgh-1.0.8-linux-amd64"
-      sha256 "0cd707f78775a8f29971d839d6966009e4f6bcee5f183a26024f30508a8b1719"
+      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.0.9/lgh-1.0.9-linux-amd64"
+      sha256 "190e55a6bf462c90c0ec6ca9f3d29dcb53f74a4221699fc8cf947cc0d28f52c7"
 
       def install
-        bin.install "lgh-1.0.8-linux-amd64" => "lgh"
+        bin.install "lgh-1.0.9-linux-amd64" => "lgh"
       end
     end
   end
