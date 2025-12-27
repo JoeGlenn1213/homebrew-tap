@@ -25,41 +25,41 @@ class Lgh < Formula
   desc "Lightweight local Git hosting service with authentication - LocalGitHub"
   homepage "https://github.com/JoeGlenn1213/lgh"
   license "MIT"
-  version "1.0.9"
+  version "1.1.0"
 
   # Use prebuilt binaries for faster installation
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.0.9/lgh-1.0.9-darwin-arm64"
-      sha256 "a1c5b2560fc8c139c7a998adc44bcab76528bf4f140a589362f7284c6c986509"
+      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.1.0/lgh-1.1.0-darwin-arm64"
+      sha256 "04e430a774f24e5f80830f3c8358638a3aa9bbf3b46edbbf8e6e0e68334bcaa9"
 
       def install
-        bin.install "lgh-1.0.9-darwin-arm64" => "lgh"
+        bin.install "lgh-1.1.0-darwin-arm64" => "lgh"
       end
     else
-      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.0.9/lgh-1.0.9-darwin-amd64"
-      sha256 "c47ef6b8fec201e6da24cf2a4276cad6064740bf87eaf02461a1466019f48170"
+      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.1.0/lgh-1.1.0-darwin-amd64"
+      sha256 "db805a5881449270761a2fb74e3403c3cd24434909fe7fdf2a70db0d885d7f52"
 
       def install
-        bin.install "lgh-1.0.9-darwin-amd64" => "lgh"
+        bin.install "lgh-1.1.0-darwin-amd64" => "lgh"
       end
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.0.9/lgh-1.0.9-linux-arm64"
-      sha256 "ac64a5568f69bf26bd143169065b8b9ba4322342185ac5c6ceb300bf419c93e8"
+      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.1.0/lgh-1.1.0-linux-arm64"
+      sha256 "2420f1ef52e26a06f03a2568dbbdc82d5c2d12617aa4ca9555d431bbe1e5b23f"
 
       def install
-        bin.install "lgh-1.0.9-linux-arm64" => "lgh"
+        bin.install "lgh-1.1.0-linux-arm64" => "lgh"
       end
     else
-      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.0.9/lgh-1.0.9-linux-amd64"
-      sha256 "190e55a6bf462c90c0ec6ca9f3d29dcb53f74a4221699fc8cf947cc0d28f52c7"
+      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.1.0/lgh-1.1.0-linux-amd64"
+      sha256 "bd5890c8d3c75895ccef4d419e9ac335f6173c84ded3ccb125ca3dece15ccaf5"
 
       def install
-        bin.install "lgh-1.0.9-linux-amd64" => "lgh"
+        bin.install "lgh-1.1.0-linux-amd64" => "lgh"
       end
     end
   end
@@ -78,11 +78,10 @@ class Lgh < Formula
         2. In your project: 'lgh add . --push' (One-click setup!)
           - Or manually: 'lgh add .' then 'git push lgh HEAD'
 
-      New in v1.0.4:
-        - 'lgh repo status': Check connection state clearly
-        - 'lgh remote use': Switch active remote easily
-        - 'lgh clone': Simplified cloning
-        - 'lgh doctor': Check system health
+      New in v1.1.0:
+        - "Agent Integration": Socket-based real-time event subscription
+        - "Event Replay": Inject historical events for testing
+        - "lgh events --watch": Tail -f style event monitoring
 
       For network sharing (with authentication):
         1. Run 'lgh auth setup' to configure username/password
