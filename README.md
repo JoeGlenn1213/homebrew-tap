@@ -33,4 +33,4 @@ open http://localhost:3000   # web console (install actiond-web for the UI)
 | [lgh](Formula/lgh.rb) | 1.3.1 | Local Git Hub — turn a local directory into a Git server with events, MCP, and LAN sync |
 | [actiond](Formula/actiond.rb) | 1.2.1 | Local CI/CD engine for AI agents — plugin execution, MCP server (23 tools), rollback |
 
-Formulae download prebuilt binaries from GitHub Releases (linux + macOS, amd64 + arm64).
+Formulae download prebuilt binaries from GitHub Releases (linux + macOS, amd64 + arm64). They are kept in sync with the latest releases automatically — [update-formulae.yml](.github/workflows/update-formulae.yml) checks every 6 hours (or on demand) and bumps versions/checksums from the release assets' official digests.
