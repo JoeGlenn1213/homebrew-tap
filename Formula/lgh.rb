@@ -25,41 +25,41 @@ class Lgh < Formula
   desc "Lightweight local Git hosting service with authentication - LocalGitHub"
   homepage "https://github.com/JoeGlenn1213/lgh"
   license "MIT"
-  version "1.2.2"
+  version "1.3.1"
 
   # Use prebuilt binaries for faster installation
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.2.2/lgh-v1.2.2-darwin-arm64"
-      sha256 "f5d96b5be685d7d36c40e10cc75f9caf9e71fc0b8852f1f5e521fed3a247fd5e"
+      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.3.1/lgh-v1.3.1-darwin-arm64"
+      sha256 "4dd2206b47d6ac8f79bbdfbe642b6b96197b0dac05292d11f965c7966e57bd74"
 
       def install
-        bin.install "lgh-v1.2.2-darwin-arm64" => "lgh"
+        bin.install "lgh-v1.3.1-darwin-arm64" => "lgh"
       end
     else
-      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.2.2/lgh-v1.2.2-darwin-amd64"
-      sha256 "ce094411253a044ace0c5601cd7c98e40b09e785683dc465f4527bc04ad4b049"
+      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.3.1/lgh-v1.3.1-darwin-amd64"
+      sha256 "168b0c1535a0be84890debdf1b17de00e3a985700aae908313ea485deff4749c"
 
       def install
-        bin.install "lgh-v1.2.2-darwin-amd64" => "lgh"
+        bin.install "lgh-v1.3.1-darwin-amd64" => "lgh"
       end
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.2.2/lgh-v1.2.2-linux-arm64"
-      sha256 "9e10a5c19888c3335d5ef5f2abf87bb85a8fa8e6cc861c55ae3bb94aaf438510"
+      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.3.1/lgh-v1.3.1-linux-arm64"
+      sha256 "12bcc48d28abeda51406ef95a9ce7bf684d11e3868aa0792b351816f89174252"
 
       def install
-        bin.install "lgh-v1.2.2-linux-arm64" => "lgh"
+        bin.install "lgh-v1.3.1-linux-arm64" => "lgh"
       end
     else
-      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.2.2/lgh-v1.2.2-linux-amd64"
-      sha256 "dff0a9a4fea4a9ce6a5c700a2443d8db2047a68f8eb402a82c2f44db0c133959"
+      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.3.1/lgh-v1.3.1-linux-amd64"
+      sha256 "b40022c0e92464e0200468a60cdde37114aa00b969fc7411b414aa8c58f3bb3d"
 
       def install
-        bin.install "lgh-v1.2.2-linux-amd64" => "lgh"
+        bin.install "lgh-v1.3.1-linux-amd64" => "lgh"
       end
     end
   end
@@ -77,11 +77,11 @@ class Lgh < Formula
         2. In your project: 'lgh up "initial commit"' (Smart Ignore enabled!)
           - Or manually: 'lgh add .' then 'git push lgh HEAD'
 
-      New in v1.2.1:
+      New in v1.3.x:
         - "Smart Ignore": Auto-generate .gitignore for Py/Go/Node/AI projects
         - "Trash Detection": Prevents committing large files (>50MB) and secrets
         - "One-click Backup": 'lgh up' and 'lgh save' commands
-        - "MCP Server": AI Agent integration
+        - "MCP Server": AI Agent integration (SSE + streamable-http transports)
 
       For network sharing (with authentication):
         1. Run 'lgh auth setup' to configure username/password
