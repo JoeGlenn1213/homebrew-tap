@@ -28,13 +28,15 @@ TOKEN = os.environ.get("GITHUB_TOKEN")
 TAP_DIR = os.environ.get("TAP_DIR", os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # repo, formula path, asset prefix, whether asset names embed the version
-# (lgh ships lgh-v<tag>-<os>-<arch>; actiond ships actiond-<os>-<arch>)
+# (both projects now ship unversioned assets — prefix-<os>-<arch> — which
+# keeps /releases/latest/download/ README links stable; versioned_asset is
+# retained for future projects that name assets with the tag)
 PROJECTS = [
     {
         "repo": "JoeGlenn1213/lgh",
         "formula": "Formula/lgh.rb",
         "prefix": "lgh",
-        "versioned_asset": True,
+        "versioned_asset": False,
     },
     {
         "repo": "JoeGlenn1213/ActionD",
@@ -104,8 +106,17 @@ def update_formula(project):
         if n != 1:
             sys.exit(f"{path}: could not locate the {goos}/{goarch} url+sha256 block")
 
-    # bin.install source names embed the version only for some projects.
-    text = text.replace(f"{project['prefix']}-v{current}-", f"{project['prefix']}-v{tag}-")
+    # bin.install source names embed the version only for versioned assets;
+    # for unversioned ones, strip any legacy versioned names (one-time
+    # transition from the old naming scheme).
+    if project["versioned_asset"]:
+        text = text.replace(f"{project['prefix']}-v{current}-", f"{project['prefix']}-v{tag}-")
+    else:
+        text = re.sub(
+            rf'{re.escape(project["prefix"])}-v\d+(\.\d+)*-',
+            f"{project['prefix']}-",
+            text,
+        )
     text = re.sub(r'^  version "[^"]+"$', f'  version "{tag}"', text, count=1, flags=re.M)
 
     with open(path, "w", encoding="utf-8") as fh:
