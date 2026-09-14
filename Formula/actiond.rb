@@ -25,21 +25,21 @@ class Actiond < Formula
   desc "Local CI/CD engine for AI agents - event-driven plugin execution on LGH"
   homepage "https://github.com/JoeGlenn1213/ActionD"
   license "MIT"
-  version "1.2.1"
+  version "1.3.0"
 
   # Prebuilt binaries; built by .github/workflows/release.yml (CGO_ENABLED=0,
   # pure-Go SQLite) on tag pushes.
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/JoeGlenn1213/ActionD/releases/download/v1.2.1/actiond-darwin-arm64"
-      sha256 "0e1bd91de9b9d3c513d83124b1d1cc7b7f958b31387a92f2d8c0bc83ee096cd5"
+      url "https://github.com/JoeGlenn1213/ActionD/releases/download/v1.3.0/actiond-darwin-arm64"
+      sha256 "75e8944ff02683b8852363c6eb06678dd78563fbb9753ba94d74fc5d8a4a2b1c"
 
       def install
         bin.install "actiond-darwin-arm64" => "actiond"
       end
     else
-      url "https://github.com/JoeGlenn1213/ActionD/releases/download/v1.2.1/actiond-darwin-amd64"
-      sha256 "0cc32dd8128048c92138805b2fd2fe238ec94048dd3e9699d12c9e836dc75f43"
+      url "https://github.com/JoeGlenn1213/ActionD/releases/download/v1.3.0/actiond-darwin-amd64"
+      sha256 "ad0fbd750794f85e6243a415946b7307bf3c359be1eb6a3fa3f92f82e3e2bbec"
 
       def install
         bin.install "actiond-darwin-amd64" => "actiond"
@@ -49,15 +49,15 @@ class Actiond < Formula
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/JoeGlenn1213/ActionD/releases/download/v1.2.1/actiond-linux-arm64"
-      sha256 "c62d2dd009aafb64cc74d4558221e868d2cdb922999142e7942fcf636a0d96d1"
+      url "https://github.com/JoeGlenn1213/ActionD/releases/download/v1.3.0/actiond-linux-arm64"
+      sha256 "d1eac840f6c67c7ff57d7063e963e8992faa5193bbd110dc093c0a15ab0d0d9f"
 
       def install
         bin.install "actiond-linux-arm64" => "actiond"
       end
     else
-      url "https://github.com/JoeGlenn1213/ActionD/releases/download/v1.2.1/actiond-linux-amd64"
-      sha256 "1711c290183fcaf571d2839325bcd61d15213667e6e0858faaadc6f69aacceda"
+      url "https://github.com/JoeGlenn1213/ActionD/releases/download/v1.3.0/actiond-linux-amd64"
+      sha256 "fa2a8d5ad6fa945a8f841fde85ef0d458771dfbb804c7f9b072fede989616b2c"
 
       def install
         bin.install "actiond-linux-amd64" => "actiond"
@@ -83,7 +83,7 @@ class Actiond < Formula
         4. Run 'actiond doctor' any time to diagnose the environment
 
       AI agent integration:
-        - 'actiond mcp' starts the MCP server (22 tools, incl. dev_cycle_run)
+        - 'actiond mcp' starts the MCP server (23 tools, incl. dev_cycle_run)
         - Set ACTIOND_MCP_ALLOW_LIFECYCLE=1 to allow start/stop over MCP
         - LGH not on localhost:9418? Set ACTIOND_LGH_URL accordingly
 

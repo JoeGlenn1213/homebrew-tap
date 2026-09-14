@@ -25,20 +25,20 @@ class Lgh < Formula
   desc "Lightweight local Git hosting service with authentication - LocalGitHub"
   homepage "https://github.com/JoeGlenn1213/lgh"
   license "MIT"
-  version "1.3.2"
+  version "1.3.3"
 
   # Use prebuilt binaries for faster installation
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.3.2/lgh-darwin-arm64"
-      sha256 "47b2f1b9434553ace9366be70e2b9e4a5b9fa34f2ddb3cde27facf5b9b4e7863"
+      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.3.3/lgh-darwin-arm64"
+      sha256 "d4b4dda28810d029ea540d941abff437a0fedcbde1acf7b75c346ee233a074c0"
 
       def install
         bin.install "lgh-darwin-arm64" => "lgh"
       end
     else
-      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.3.2/lgh-darwin-amd64"
-      sha256 "4280ecdfe7f94f228bacb69d2a3307d60c9a0481c413af8cbc61dc5011172df0"
+      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.3.3/lgh-darwin-amd64"
+      sha256 "6e72398a29e5237a3fdef5e947729a6788184b0d5f2dfc243c9ce11577748119"
 
       def install
         bin.install "lgh-darwin-amd64" => "lgh"
@@ -48,15 +48,15 @@ class Lgh < Formula
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.3.2/lgh-linux-arm64"
-      sha256 "7c05222cca3e73d5d2fdc8ddf32ab1f182230aa603b450edcdfcbc1f1def0ee7"
+      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.3.3/lgh-linux-arm64"
+      sha256 "acf282d545724b569524e339ebffe4b045305db95022af7e055ceedfa61f6cc4"
 
       def install
         bin.install "lgh-linux-arm64" => "lgh"
       end
     else
-      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.3.2/lgh-linux-amd64"
-      sha256 "0b4996ecd9abb98a887be4c91b4f204c70db89daefee87f67eaedfaa744b90e9"
+      url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.3.3/lgh-linux-amd64"
+      sha256 "df8b38d4b2d1590e7a6f86a118df892dcfc89ea2cbfe54e16fb24b455ac75126"
 
       def install
         bin.install "lgh-linux-amd64" => "lgh"
