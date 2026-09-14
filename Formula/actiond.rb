@@ -83,7 +83,7 @@ class Actiond < Formula
         4. Run 'actiond doctor' any time to diagnose the environment
 
       AI agent integration:
-        - 'actiond mcp' starts the MCP server (23 tools, incl. dev_cycle_run)
+        - 'actiond mcp' starts the MCP server (22 tools, incl. dev_cycle_run)
         - Set ACTIOND_MCP_ALLOW_LIFECYCLE=1 to allow start/stop over MCP
         - LGH not on localhost:9418? Set ACTIOND_LGH_URL accordingly
 
