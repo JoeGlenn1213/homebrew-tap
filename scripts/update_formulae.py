@@ -44,6 +44,13 @@ PROJECTS = [
         "prefix": "actiond",
         "versioned_asset": False,
     },
+    {
+        "repo": "JoeGlenn1213/actiond-web",
+        "formula": "Formula/actiond-web.rb",
+        "prefix": "actiond-web",
+        "versioned_asset": True,
+        "tarball": True,
+    },
 ]
 
 PLATFORMS = [("darwin", "arm64"), ("darwin", "amd64"), ("linux", "arm64"), ("linux", "amd64")]
@@ -85,6 +92,29 @@ def update_formula(project):
         for a in release["assets"]
         if a.get("digest")
     }
+
+    # Handle tarball-based formulae (e.g., actiond-web)
+    if project.get("tarball"):
+        tarball_name = f"{project['prefix']}-{tag}.tar.gz"
+        if tarball_name not in digests:
+            print(f"{project['repo']}: release v{tag} is missing tarball {tarball_name}; skipping")
+            return None
+
+        url = f"https://github.com/{project['repo']}/releases/download/v{tag}/{tarball_name}"
+        pattern = re.compile(
+            r'url "https://github\.com/[^"]+/releases/download/[^"]+\.tar\.gz"\n\s+sha256 "[0-9a-f]{{64}}"'
+        )
+        text, n = pattern.subn(f'url "{url}"\n  sha256 "{digests[tarball_name]}"', text, count=1)
+        if n != 1:
+            sys.exit(f"{path}: could not locate the tarball url+sha256 block")
+
+        text = re.sub(r'^  version "[^"]+"$', f'  version "{tag}"', text, count=1, flags=re.M)
+
+        with open(path, "w", encoding="utf-8") as fh:
+            fh.write(text)
+        return f"{project['repo']}: {current} -> {tag}"
+
+    # Handle platform-specific binary formulae
     for goos, goarch in PLATFORMS:
         expected = asset_name(project, tag, goos, goarch)
         if expected not in digests:

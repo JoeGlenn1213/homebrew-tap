@@ -34,6 +34,7 @@ jobs:
         run: |
           ruby -c Formula/lgh.rb
           ruby -c Formula/actiond.rb
+          ruby -c Formula/actiond-web.rb
 
       - name: Commit and push
         if: steps.update.outputs.changed == 'true'

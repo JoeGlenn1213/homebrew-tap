@@ -68,6 +68,14 @@ class Actiond < Formula
   # Plugins are Python; git is used for checkouts; LGH is the event source.
   depends_on "git" => :recommended
 
+  service do
+    run [opt_bin/"actiond", "start"]
+    keep_alive true
+    working_dir var
+    log_path var/"log/actiond.log"
+    error_log_path var/"log/actiond.log"
+  end
+
   def caveats
     <<~EOS
       ActionD - Local CI/CD engine for AI agents (part of the LGH ecosystem)

@@ -68,6 +68,14 @@ class Lgh < Formula
   # Using :recommended instead of required to avoid Xcode dependency issues
   depends_on "git" => :recommended
 
+  service do
+    run [opt_bin/"lgh", "serve"]
+    keep_alive true
+    working_dir var
+    log_path var/"log/lgh.log"
+    error_log_path var/"log/lgh.log"
+  end
+
   def caveats
     <<~EOS
       LGH (LocalGitHub) - Lightweight local Git hosting service
