@@ -37,14 +37,6 @@ class ActiondWeb < Formula
     (share/"actiond-web/out").install Dir["*"]
   end
 
-  def post_install
-    user_web_dir = Pathname.new(Dir.home)/".localgithub/actiond-web"
-    unless user_web_dir.exist?
-      user_web_dir.mkpath
-      (user_web_dir/"out").make_symlink(share/"actiond-web/out")
-    end
-  end
-
   def caveats
     <<~EOS
       ActionD Web - Static web console for ActionD
@@ -56,8 +48,9 @@ class ActiondWeb < Formula
         1. ~/.localgithub/actiond-web/out
         2. The Homebrew share path above
 
-      A symlink has been created at ~/.localgithub/actiond-web/out pointing
-      to the installed assets (unless the directory already existed).
+      To create the symlink for automatic discovery:
+        mkdir -p ~/.localgithub/actiond-web
+        ln -s #{share}/actiond-web/out ~/.localgithub/actiond-web/out
 
       To use with ActionD:
         actiond start          # serves the console at http://localhost:3000

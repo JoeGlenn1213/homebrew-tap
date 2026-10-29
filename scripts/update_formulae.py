@@ -102,7 +102,7 @@ def update_formula(project):
 
         url = f"https://github.com/{project['repo']}/releases/download/v{tag}/{tarball_name}"
         pattern = re.compile(
-            r'url "https://github\.com/[^"]+/releases/download/[^"]+\.tar\.gz"\n\s+sha256 "[0-9a-f]{{64}}"'
+            r'url "https://github\.com/[^"]+/releases/download/[^"]+\.tar\.gz"\n\s+sha256 "[0-9a-f]{64}"'
         )
         text, n = pattern.subn(f'url "{url}"\n  sha256 "{digests[tarball_name]}"', text, count=1)
         if n != 1:
