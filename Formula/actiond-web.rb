@@ -25,12 +25,8 @@ class ActiondWeb < Formula
   desc "Static web console for ActionD: dashboard, logs, and diagnosis"
   homepage "https://github.com/JoeGlenn1213/actiond-web"
   url "https://github.com/JoeGlenn1213/actiond-web/releases/download/v0.1.1/actiond-web-0.1.1.tar.gz"
-  sha256 "0000000000000000000000000000000000000000000000000000000000000000"
+  sha256 "b388a9b6ad8ab13d9cab98df2f7b0e72e2d3f6f194e1703a34aa5fad741071c1"
   license "MIT"
-
-  # Placeholder until v0.1.1 is published. brew install refuses via disable!.
-  # The update script removes this disable! when it writes the real checksum.
-  disable! date: "2026-10-30", because: "is a placeholder until the v0.1.1 release tarball is published"
 
   def install
     (share/"actiond-web/out").install Dir["*"]
