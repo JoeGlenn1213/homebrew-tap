@@ -25,24 +25,19 @@ class Lgh < Formula
   desc "Lightweight local Git hosting service with authentication - LocalGitHub"
   homepage "https://github.com/JoeGlenn1213/lgh"
   license "MIT"
-  version "1.3.4"
+
+  # Runtime dependency only - git should already be installed on most systems
+  # Using :recommended instead of required to avoid Xcode dependency issues
+  depends_on "git" => :recommended
 
   # Use prebuilt binaries for faster installation
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.3.4/lgh-darwin-arm64"
       sha256 "4901342ddbe9b92587b7fc6353b43f6806bad0049c2ed6e4429cc93e0f28e5eb"
-
-      def install
-        bin.install "lgh-darwin-arm64" => "lgh"
-      end
     else
       url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.3.4/lgh-darwin-amd64"
       sha256 "fb5aa1bdee6456a5ca85e8b6512123528ae12a8d68fdc173c21a5b36bd087ee1"
-
-      def install
-        bin.install "lgh-darwin-amd64" => "lgh"
-      end
     end
   end
 
@@ -50,23 +45,31 @@ class Lgh < Formula
     if Hardware::CPU.arm?
       url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.3.4/lgh-linux-arm64"
       sha256 "4d337d5046c02f154922613ad86029db7c6c71e9c3f7b13060d06f5b67a42893"
-
-      def install
-        bin.install "lgh-linux-arm64" => "lgh"
-      end
     else
       url "https://github.com/JoeGlenn1213/lgh/releases/download/v1.3.4/lgh-linux-amd64"
       sha256 "4ae5b542426d92494340bdc4f1500eb85d3428e78a4d09c0843d20a75f027ea3"
-
-      def install
-        bin.install "lgh-linux-amd64" => "lgh"
-      end
     end
   end
 
-  # Runtime dependency only - git should already be installed on most systems
-  # Using :recommended instead of required to avoid Xcode dependency issues
-  depends_on "git" => :recommended
+  def install
+    binary = if OS.mac?
+      Hardware::CPU.arm? ? "lgh-darwin-arm64" : "lgh-darwin-amd64"
+    else
+      Hardware::CPU.arm? ? "lgh-linux-arm64" : "lgh-linux-amd64"
+    end
+    bin.install binary => "lgh"
+  end
+
+  service do
+    run [opt_bin/"lgh", "serve"]
+    # A clean exit (for example, another instance is already running) must
+    # not restart forever. Restart only after a non-zero exit.
+    keep_alive successful_exit: false
+    environment_variables PATH: std_service_path_env
+    working_dir var
+    log_path var/"log/lgh.log"
+    error_log_path var/"log/lgh.log"
+  end
 
   def caveats
     <<~EOS

@@ -25,48 +25,51 @@ class Actiond < Formula
   desc "Local CI/CD engine for AI agents - event-driven plugin execution on LGH"
   homepage "https://github.com/JoeGlenn1213/ActionD"
   license "MIT"
-  version "1.3.0"
+
+  # Plugins are Python; git is used for checkouts; LGH is the event source.
+  depends_on "git" => :recommended
 
   # Prebuilt binaries; built by .github/workflows/release.yml (CGO_ENABLED=0,
   # pure-Go SQLite) on tag pushes.
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/JoeGlenn1213/ActionD/releases/download/v1.3.0/actiond-darwin-arm64"
-      sha256 "75e8944ff02683b8852363c6eb06678dd78563fbb9753ba94d74fc5d8a4a2b1c"
-
-      def install
-        bin.install "actiond-darwin-arm64" => "actiond"
-      end
+      url "https://github.com/JoeGlenn1213/ActionD/releases/download/v1.3.1/actiond-darwin-arm64"
+      sha256 "4c73233b828a7eb68de7d9b16c367ed58a363ab73f962c64ce845eed173e9723"
     else
-      url "https://github.com/JoeGlenn1213/ActionD/releases/download/v1.3.0/actiond-darwin-amd64"
-      sha256 "ad0fbd750794f85e6243a415946b7307bf3c359be1eb6a3fa3f92f82e3e2bbec"
-
-      def install
-        bin.install "actiond-darwin-amd64" => "actiond"
-      end
+      url "https://github.com/JoeGlenn1213/ActionD/releases/download/v1.3.1/actiond-darwin-amd64"
+      sha256 "db5a80e794d7694d6eb82e94e3937214c056ff6f9958c6287e254a783d039a72"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/JoeGlenn1213/ActionD/releases/download/v1.3.0/actiond-linux-arm64"
-      sha256 "d1eac840f6c67c7ff57d7063e963e8992faa5193bbd110dc093c0a15ab0d0d9f"
-
-      def install
-        bin.install "actiond-linux-arm64" => "actiond"
-      end
+      url "https://github.com/JoeGlenn1213/ActionD/releases/download/v1.3.1/actiond-linux-arm64"
+      sha256 "ee4a0e7d6ce1beab3ab7970c2be5dbd2a46f1de0717e1f04973aa93daa4b16b4"
     else
-      url "https://github.com/JoeGlenn1213/ActionD/releases/download/v1.3.0/actiond-linux-amd64"
-      sha256 "fa2a8d5ad6fa945a8f841fde85ef0d458771dfbb804c7f9b072fede989616b2c"
-
-      def install
-        bin.install "actiond-linux-amd64" => "actiond"
-      end
+      url "https://github.com/JoeGlenn1213/ActionD/releases/download/v1.3.1/actiond-linux-amd64"
+      sha256 "79f17f58f5b8188bbc85bc70acb877500c0e50c74a85d0f9356d47a00e9a6a94"
     end
   end
 
-  # Plugins are Python; git is used for checkouts; LGH is the event source.
-  depends_on "git" => :recommended
+  def install
+    binary = if OS.mac?
+      Hardware::CPU.arm? ? "actiond-darwin-arm64" : "actiond-darwin-amd64"
+    else
+      Hardware::CPU.arm? ? "actiond-linux-arm64" : "actiond-linux-amd64"
+    end
+    bin.install binary => "actiond"
+  end
+
+  service do
+    run [opt_bin/"actiond", "start"]
+    # A clean exit (for example, another instance is already running) must
+    # not restart forever. Restart only after a non-zero exit.
+    keep_alive successful_exit: false
+    environment_variables PATH: std_service_path_env
+    working_dir var
+    log_path var/"log/actiond.log"
+    error_log_path var/"log/actiond.log"
+  end
 
   def caveats
     <<~EOS
