@@ -54,4 +54,13 @@ jobs:
         run: brew style Formula
 
       - name: brew audit
-        run: brew audit --strict --tap="${{ steps.set-up-homebrew.outputs.tap-name }}"
+        run: |
+          set -euo pipefail
+          # setup-homebrew trusts the tap but does not always export tap-name.
+          repo="${GITHUB_REPOSITORY,,}"
+          owner="${repo%%/*}"
+          leaf="${repo#*/}"
+          leaf="${leaf#homebrew-}"
+          tap="${owner}/${leaf}"
+          echo "Auditing ${tap}"
+          brew audit --strict --tap="$tap"
