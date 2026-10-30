@@ -22,16 +22,15 @@
 # To use: brew tap JoeGlenn1213/tap && brew install actiond-web
 
 class ActiondWeb < Formula
-  desc "Static web console for ActionD - live dashboard, SSE log streaming, failure diagnosis"
+  desc "Static web console for ActionD: dashboard, logs, and diagnosis"
   homepage "https://github.com/JoeGlenn1213/actiond-web"
-  license "MIT"
-  version "0.1.1"
-
-  # TODO: Replace placeholder sha256 once v0.1.1 release is published with tarball asset.
-  # The release workflow (separate PR) will publish:
-  #   https://github.com/JoeGlenn1213/actiond-web/releases/download/v0.1.1/actiond-web-0.1.1.tar.gz
   url "https://github.com/JoeGlenn1213/actiond-web/releases/download/v0.1.1/actiond-web-0.1.1.tar.gz"
   sha256 "0000000000000000000000000000000000000000000000000000000000000000"
+  license "MIT"
+
+  # Placeholder until v0.1.1 is published. brew install refuses via disable!.
+  # The update script removes this disable! when it writes the real checksum.
+  disable! date: "2026-10-30", because: "is a placeholder until the v0.1.1 release tarball is published"
 
   def install
     (share/"actiond-web/out").install Dir["*"]
